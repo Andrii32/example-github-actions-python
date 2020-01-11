@@ -32,3 +32,7 @@ jobs:
       run: |
         pip install mypy
         mypy ./src --config-file mypy.ini
+    - name: requirements versions check
+      run: |
+        pip install piprot
+        piprot requirements.txt --delay 365

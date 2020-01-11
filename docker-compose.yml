@@ -5,6 +5,6 @@ services:
   app:
     build: .
     working_dir: '/usr/project/'
-    command: bash -c "pytest && mypy ./src && python3 ./src/run.py"
+    command: bash -c "piprot requirements.txt --delay 365 && pytest && mypy ./src && python3 ./src/run.py"
     volumes:
       - ./src:/usr/project/src
