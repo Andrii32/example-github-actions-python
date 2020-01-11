@@ -43,3 +43,5 @@ jobs:
         piprot requirements.txt --delay 365
     - name: Lint all Dockerfiles
       uses: "docker://cdssnc/docker-lint-github-action"
+      with:
+        args: "--files Dockerfile"
