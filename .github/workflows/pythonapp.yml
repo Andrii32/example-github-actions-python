@@ -31,4 +31,4 @@ jobs:
     - name: Mypy Check
       run: |
         pip install mypy
-        mypy --config-file mypy.ini
+        mypy ./src --config-file mypy.ini
