@@ -5,6 +5,11 @@ services:
   app:
     build: .
     working_dir: '/usr/project/'
-    command: bash -c "mypy ./src && python3 ./src/run.py"
+    command: bash -c "
+                      pip-licenses --summary --order=count --format=markdown &&
+                      piprot requirements.txt --delay 365 &&
+                      python -m pytest --cov=src --cov-fail-under 80 &&
+                      mypy ./src &&
+                      python3 ./src/run.py"
     volumes:
       - ./src:/usr/project/src
