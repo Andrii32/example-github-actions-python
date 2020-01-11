@@ -26,6 +26,7 @@ jobs:
         pip install pytest-cov
         pip install mypy
         pip install piprot
+        pip install pip-licenses
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -41,6 +42,9 @@ jobs:
     - name: requirements versions check
       run: |
         piprot requirements.txt --delay 365
+    - name: Show licenses
+      run: |
+        pip-licenses --summary --order=count --format=markdown
     - name: Lint all Dockerfiles
       uses: "docker://cdssnc/docker-lint-github-action"
       with:
