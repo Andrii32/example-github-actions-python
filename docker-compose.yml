@@ -7,15 +7,19 @@ services:
   app:
     build: .
     working_dir: '/usr/project/'
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+    command: bash -c "
+        python -m pytest -vv --cov=src --cov-fail-under 80"
 #    command: bash -c "
 #      mypy ./src &&
 #      python -m pytest -vv --cov=src --cov-fail-under 80"
-    command: bash -c "
-                      pip-licenses --summary --order=count --format=markdown &&
-                      piprot requirements.txt --delay 365 &&
-                      flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics &&
-                      mypy ./src &&
-                      python -m pytest --cov=src --cov-fail-under 80 &&
-                      python3 ./src/run.py"
+#    command: bash -c "
+#                      pip-licenses --summary --order=count --format=markdown &&
+#                      piprot requirements.txt --delay 365 &&
+#                      flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics &&
+#                      mypy ./src &&
+#                      python -m pytest --cov=src --cov-fail-under 80 &&
+#                      python3 ./src/run.py"
     volumes:
       - ./src:/usr/project/src
